@@ -5,6 +5,17 @@ import json
 connected_clients = set()
 
 time = 0
+
+async def send_message_rest(i_connection, status, detail, command="", time=0):
+    for connection in connected_clients:
+        if connection != i_connection:
+            await connection.send(json.dumps({
+                            "status": status, 
+                            "detail": detail, 
+                            "command": command,
+                            "time": time
+                            }))
+        
 async def send_message_all(status, detail, command="", time=0):
     for connection in connected_clients:
         await connection.send(json.dumps({
@@ -30,10 +41,10 @@ async def handle_websocket_connection(websocket, path):
                 await websocket.send(json.dumps({"status": "success", "comand": "connect"}))
             
             elif data["command"] == 'play':
-                await send_message_all("success", "play", "play", data["time"])
+                await send_message_rest(websocket, "success", "play", "play", data["time"])
 
             elif data["command"] == 'pause':
-                await send_message_all("success", "pause", "pause", data["time"])
+                await send_message_rest(websocket, "success", "pause", "pause", data["time"])
 
             else:
             # Echo the received message back to the client
