@@ -3,7 +3,7 @@ const video = document.getElementById('myVideo');
 const fileInput = document.getElementById('fileInput');
 
 
-const socket = new WebSocket('ws://localhost:8765'); // Replace wit
+const socket = new WebSocket('wss://extra-z7e4jwfgoq-el.a.run.app'); // Replace wit
 socket.addEventListener('open', function (event) {    
     // Send a message to the WebSocket server
     socket.send(JSON.stringify({command: "connect"}));
