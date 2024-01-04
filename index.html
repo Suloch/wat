@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Video Player</title>
+</head>
+<body>
+    <input type="file" id="fileInput">
+    <button onclick="loadVideo()">Load Video</button><br><br>
+
+    <button onclick="syncVideo()">Sync Video</button><br><br>
+    <button onclick="pauseVideo()">Pause</button><br><br>
+    <button onclick="playVideo()">Play</button><br><br>
+
+    <video id="myVideo" width="640" height="360" controls>
+      Your browser does not support the video tag.
+    </video>
+
+  <script src="index.js"></script>
+</body>
+</html>
