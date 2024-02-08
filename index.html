@@ -3,14 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Simple Video Player</title>
+  <style>
+    body{
+      background-image: url('https://images7.alphacoders.com/133/1333741.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .video-container{
+      margin-top: 10%;
+      text-align: center;
+      video{
+        border: 4px solid white;
+        border-radius: 16px;
+      }
+      .title{
+        color: white;
+        font-size: 32px;
+      }
+      .button{
+        background-color: #c463d3;
+        border: 1px solid white;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <input type="file" id="fileInput">
-    <button onclick="loadVideo()">Load Video</button><br><br>
-
-    <video id="myVideo" width="640" height="360" controls>
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-container">
+      <span class="title">Poor Man's Discord</span>
+      <br>
+      <video id="myVideo" width="640" height="360" controls>
+        Your browser does not support the video tag.
+      </video>
+      <br>
+      <input type="file" id="fileInput">
+      <button class="button" onclick="player.loadVideo()">Load</button><br><br>
+    </div>
 
   <script src="index.js"></script>
 </body>
