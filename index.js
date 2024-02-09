@@ -2,6 +2,8 @@
 class Player{
   
   constructor(){
+    this.connectedColor = '#1785b7';
+    this.disConnectedColor = '#d36f17';
     this.socket = null;
     this.video = document.getElementById('myVideo');
     this.fileInput = document.getElementById('fileInput');
@@ -10,6 +12,8 @@ class Player{
 
     this.startWebSocket();
     this.loadVideo();
+
+    this.statusElement = document.getElementById('status');
   }
 
   startWebSocket(){
@@ -17,6 +21,7 @@ class Player{
 
     this.socket.addEventListener('open', (event) => {
       this.socket.send(JSON.stringify({command: "connect"}));
+      this.statusElement.style.backgroundColor = this.connectedColor;
     });
 
     this.socket.addEventListener('message', (event) => {
@@ -34,6 +39,7 @@ class Player{
 
     this.socket.addEventListener('close', (event) => {
       console.log('WebSocket connection closed.');
+      this.statusElement.style.backgroundColor = this.disConnectedColor;
       this.socket = null;
       setTimeout(()=>{this.startWebSocket()}, 5000);
     });
@@ -46,7 +52,6 @@ class Player{
   loadVideo(){
     if(this.fileInput.files.length < 1)
       return;
-
     this.file = this.fileInput.files[0];
     this.video.src = URL.createObjectURL(this.file);
     this.video.load();
